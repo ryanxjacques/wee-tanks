@@ -22,7 +22,7 @@ public class JumpFeature : MonoBehaviour
     {
         LineRenderer.enabled = true;
         LineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
-        Vector3 startVelocity = new Vector3(direction.x * speed, 10.0f, direction.y * speed);
+        Vector3 startVelocity = new Vector3(direction.x * speed, 10.0f, direction.z * speed);
 
         // Vector3 startVelocity = new Vector3(velocityState.x * 2, 10.0f, velocityState.z * 2);
         int i = 0;
