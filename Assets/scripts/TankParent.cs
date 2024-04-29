@@ -20,9 +20,9 @@ public class TankParent : MonoBehaviour
 
     protected void Rotate(float direction)
     {
-        if (direction == -1) {
+        if (direction == 1) {
             RotateLeft();
-        } else if (direction == 1) {
+        } else if (direction == -1) {
             RotateRight();
         }
     }
