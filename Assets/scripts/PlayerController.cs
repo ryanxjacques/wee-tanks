@@ -13,6 +13,8 @@ public class Player_Controller : TankParent
     private Vector3 velocity;
     private Vector2 keyData;
     private bool isRotating, isDriving, moveEnabled;
+    public AudioSource aud;
+    //private AudioSource aud;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class Player_Controller : TankParent
         _jumpFeature = GetComponent<JumpFeature>();
         _jumpFeature.onJump += HandleJump;
         _rigidbody = GetComponent<Rigidbody>();
+        aud = GetComponent<AudioSource>();
     }
 
     private void HandleWASD(InputAction.CallbackContext ctx)
@@ -61,6 +64,7 @@ public class Player_Controller : TankParent
         }
         if (spacebarPhase == InputActionPhase.Canceled)
         {
+            aud.Play();
             moveEnabled = true;
             _jumpFeature.Jump(_rigidbody, forward, speed);
         }

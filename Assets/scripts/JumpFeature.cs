@@ -18,7 +18,6 @@ public class JumpFeature : MonoBehaviour
     // private float gravity = -9.81f;
     public Action<string> onJump;
 
-    AudioSource aud;
 
     public void DrawProjection(Vector3 startPosition, Vector3 direction, float speed) 
     {
@@ -44,7 +43,5 @@ public class JumpFeature : MonoBehaviour
         entity.velocity = new Vector3(direction.x * speed, 10f, direction.z * speed);
         LineRenderer.enabled = false;
 
-        aud = GetComponent<AudioSource>();
-        aud.Play();
     }
 }
