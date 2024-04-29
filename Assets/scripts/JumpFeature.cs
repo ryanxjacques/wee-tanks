@@ -39,7 +39,7 @@ public class JumpFeature : MonoBehaviour
     public void Jump(Rigidbody entity, Vector3 direction, float speed)
     {
         onJump.Invoke("Started");
-        entity.velocity = new Vector3(direction.x * speed, 10f, direction.y * speed);
+        entity.velocity = new Vector3(direction.x * speed, 10f, direction.z * speed);
         LineRenderer.enabled = false;
     }
 }
