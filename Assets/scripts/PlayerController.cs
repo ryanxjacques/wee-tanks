@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/* Comment's Date: 30th April 2024
+ * The PlayerController class defines the player game object. It is a
+ * derivative of the TankParent component. The PlayerController
+ * communicates with the InputController and JumpFeature.
+ */
 [RequireComponent(typeof(JumpFeature))]
 [RequireComponent(typeof(InputController))]
 public class Player_Controller : TankParent
@@ -32,13 +37,21 @@ public class Player_Controller : TankParent
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+    // Called by InputController invoking the action 'onWASD'.
+    // KeyData looks like a 2D tuple (x, y).
+    // For x = 1  : D is pressed
+    // For x = -1 : A is pressed
+    // For y = 1  : W is pressed
+    // For y = -1 : S is pressed.
     private void HandleWASD(InputAction.CallbackContext ctx)
     {
         keyData = ctx.ReadValue<Vector2>();
+        Debug.Log(keyData);
         isRotating = (keyData.x != 0) ? true : false;
         isDriving = (keyData.y != 0) ? true : false;
     }
 
+    // Called by JumpFeature invoking the action 'onJump'.
     private void HandleJump(string msg)
     {
         if (msg == "Started")
@@ -51,15 +64,16 @@ public class Player_Controller : TankParent
         }
     }
 
+    // Called by InputController invoking the action 'onSpacebar'.
     private void Jump(InputAction.CallbackContext ctx)
     {
         InputActionPhase spacebarPhase = ctx.phase;
-        if (spacebarPhase == InputActionPhase.Started)
+        if (spacebarPhase == InputActionPhase.Started) // Spacebar initiated
         {
             moveEnabled = false;
             _jumpFeature.DrawProjection(transform.position, forward, speed);
         }
-        if (spacebarPhase == InputActionPhase.Canceled)
+        if (spacebarPhase == InputActionPhase.Canceled) // Spacebar released
         {
             moveEnabled = true;
             _jumpFeature.Jump(_rigidbody, forward, speed);
@@ -68,7 +82,7 @@ public class Player_Controller : TankParent
         Debug.Log($"Spacebar! {spacebarPhase}");
     }
 
-    // Enable Moving after hitting the ground.
+    // Renable Movemnet after hitting the ground.
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Solid"))
