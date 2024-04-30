@@ -48,7 +48,6 @@ public class Player_Controller : TankParent
     private void HandleWASD(InputAction.CallbackContext ctx)
     {
         keyData = ctx.ReadValue<Vector2>();
-        Debug.Log(keyData);
         isRotating = (keyData.x != 0) ? true : false;
         isDriving = (keyData.y != 0) ? true : false;
     }
@@ -81,8 +80,6 @@ public class Player_Controller : TankParent
             moveEnabled = true;
             _jumpFeature.Jump(_rigidbody, forward, speed);
         }
-
-        Debug.Log($"Spacebar! {spacebarPhase}");
     }
 
     // Renable Movemnet after hitting the ground.
