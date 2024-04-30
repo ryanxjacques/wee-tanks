@@ -435,7 +435,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   rotation_speed: 10
-  aud: {fileID: 342985560}
 --- !u!114 &342985553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +587,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: eb838ed2bae73ba43a9a4c6eb1ede060, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
