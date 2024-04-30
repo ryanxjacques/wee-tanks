@@ -18,8 +18,7 @@ public class Player_Controller : TankParent
     private Vector3 velocity;
     private Vector2 keyData;
     private bool isRotating, isDriving, moveEnabled;
-    public AudioSource aud;
-    //private AudioSource aud;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -37,7 +36,7 @@ public class Player_Controller : TankParent
         _jumpFeature = GetComponent<JumpFeature>();
         _jumpFeature.onJump += HandleJump;
         _rigidbody = GetComponent<Rigidbody>();
-        aud = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Called by InputController invoking the action 'onWASD'.
@@ -78,7 +77,7 @@ public class Player_Controller : TankParent
         }
         if (spacebarPhase == InputActionPhase.Canceled) // Spacebar released
         {
-            aud.Play();
+            _audioSource.Play();
             moveEnabled = true;
             _jumpFeature.Jump(_rigidbody, forward, speed);
         }
