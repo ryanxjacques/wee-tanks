@@ -22,8 +22,6 @@ public class JumpFeature : MonoBehaviour
     [SerializeField]
     [Range(0.01f, 0.25f)]
     private float TimeBetweenPoints = 0.1f;
-    public Action<string> onJump;
-
 
     public void DrawProjection(Vector3 startPosition, Vector3 direction, float speed) 
     {
@@ -44,7 +42,6 @@ public class JumpFeature : MonoBehaviour
 
     public void Jump(Rigidbody entity, Vector3 direction, float speed)
     {
-        onJump.Invoke("Started");
         entity.velocity = new Vector3(direction.x * speed, 10f, direction.z * speed);
         LineRenderer.enabled = false;
 

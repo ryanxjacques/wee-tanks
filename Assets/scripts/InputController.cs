@@ -10,18 +10,46 @@ using UnityEngine.InputSystem;
  *      Assets/InputSystem/PlayerInputSystem.inputactions.
  * The configurations are attached to the player's game object.
  */
+
+public struct Button
+{
+    public string name;
+    public bool isDown;
+    public float value;
+} 
+
+
 public class InputController : MonoBehaviour
 {
-    public Action<InputAction.CallbackContext> onWASD;
-    public Action<InputAction.CallbackContext> onSpacebar;
+    public Action<Button> onButton;
 
-    public void WASD(InputAction.CallbackContext ctx)
+    private Button CreateButtonStruct(string name, InputActionPhase phase, float value=0)
     {
-        onWASD?.Invoke(ctx);
+        Button button = new Button();
+        button.name = name;
+        button.value = value;
+        if (phase == InputActionPhase.Started || phase == InputActionPhase.Performed)
+            button.isDown = true;
+        else if (phase == InputActionPhase.Canceled)
+            button.isDown = false;
+        return button;
     }
 
-    public void Spacebar(InputAction.CallbackContext ctx)
+    public void DriveCompositeButton(InputAction.CallbackContext ctx)
     {
-        onSpacebar?.Invoke(ctx);
+        Button driveBtn = CreateButtonStruct("Drive", ctx.phase, ctx.ReadValue<float>());
+        onButton?.Invoke(driveBtn);
+    }
+
+    public void RotateCompositeButton(InputAction.CallbackContext ctx)
+    {
+        Button rotateBtn = CreateButtonStruct("Rotate", ctx.phase, ctx.ReadValue<float>());
+        onButton?.Invoke(rotateBtn);
+    }
+
+    public void JumpButton(InputAction.CallbackContext ctx)
+    {
+        Button jumpButton = CreateButtonStruct("Jump", ctx.phase);
+        onButton?.Invoke(jumpButton);
     }
 }
