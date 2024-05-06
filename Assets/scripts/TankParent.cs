@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Movement1D
+
+/* Used in Child Class (i.e. Player Controller). I get Unity 
+  'ExtensionOfNativeClass' Error if this struct isn't delcare here. */
+public struct Direction
 {
-    public bool isTrue;
-    public float direction;
-    public Movement1D(bool isTrue, float direction)
+    public float drive;
+    public float rotate;
+    public Direction(float drive = 0, float rotate = 0)
     {
-        this.isTrue = isTrue;
-        this.direction = direction;
+        this.drive = drive;
+        this.rotate = rotate;
     }
 }
 
@@ -23,9 +26,6 @@ public class TankParent : MonoBehaviour
     [Header("Tank Movement")]
     [SerializeField] protected float speed = 1;
     [SerializeField] protected float rotation_speed = 10;
-
-    protected Movement1D rotate = new Movement1D(false, 0f);
-    protected Movement1D drive = new Movement1D(false, 0f);
 
     protected void Drive(float direction)
     {
