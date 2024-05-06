@@ -60,7 +60,6 @@ public class Player_Controller : TankParent
         if (collision.gameObject.CompareTag("Solid"))
         {
             state = PlayerState.ON_GROUND;
-            isJumping = false;
         }
     }
 
