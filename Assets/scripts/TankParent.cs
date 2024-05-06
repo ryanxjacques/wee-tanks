@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Movement2D
+public struct Movement1D
 {
     public bool isTrue;
     public float direction;
-    public Movement2D(bool isTrue, float direction)
+    public Movement1D(bool isTrue, float direction)
     {
         this.isTrue = isTrue;
         this.direction = direction;
@@ -24,8 +24,8 @@ public class TankParent : MonoBehaviour
     [SerializeField] protected float speed = 1;
     [SerializeField] protected float rotation_speed = 10;
 
-    protected Movement2D rotate = new Movement2D(false, 0f);
-    protected Movement2D drive = new Movement2D(false, 0f);
+    protected Movement1D rotate = new Movement1D(false, 0f);
+    protected Movement1D drive = new Movement1D(false, 0f);
 
     protected void Drive(float direction)
     {

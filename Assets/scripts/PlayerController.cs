@@ -8,6 +8,13 @@ using UnityEngine;
  * derivative of the TankParent component. The PlayerController
  * communicates with the InputController and JumpFeature.
  */
+
+public enum PlayerState
+{
+    ON_GROUND,
+    IN_AIR,
+}
+
 [RequireComponent(typeof(JumpFeature))]
 [RequireComponent(typeof(InputController))]
 public class Player_Controller : TankParent
@@ -17,8 +24,8 @@ public class Player_Controller : TankParent
     private Rigidbody _rigidbody;
     private AudioSource _audioSource;
     private Vector3 velocity;
-    private bool driveEnabled = true;
-    private bool rotateEnabled = true;
+    private PlayerState state = PlayerState.ON_GROUND;
+    private bool isJumping = false;
 
     private void Start()
     {
@@ -41,38 +48,53 @@ public class Player_Controller : TankParent
             rotate.isTrue = button.isDown;
             rotate.direction = button.value;    
         }
-        if (button.name == "Jump" && button.isDown == true)
+        if (button.name == "Jump" && state == PlayerState.ON_GROUND)
         {
-            driveEnabled = false;
-            _jumpFeature.DrawProjection(transform.position, forward, speed);
-        }
-        if (button.name == "Jump" && button.isDown == false)
-        {
-            _audioSource.Play();
-            rotateEnabled = false;
-            _jumpFeature.Jump(_rigidbody, forward, speed);
+            isJumping = button.isDown;
+            Jump();
         }
     }
 
-    // Renable Movement after hitting the ground.
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Solid"))
         {
-            driveEnabled = true;
-            rotateEnabled = true;
+            state = PlayerState.ON_GROUND;
+            isJumping = false;
+        }
+    }
+
+    private void Jump()
+    {
+        if (state == PlayerState.IN_AIR)
+            return;
+        
+        if (isJumping == false && state == PlayerState.ON_GROUND)
+        {
+            state = PlayerState.IN_AIR;
+            _jumpFeature.Jump(_rigidbody, forward, speed);
+            _audioSource.Play();
+            return;
+        }
+
+        _jumpFeature.DrawProjection(transform.position, forward, speed);
+    }
+
+    private void Update()
+    {
+        if (isJumping)
+        {
+            Jump();
         }
     }
 
     private void FixedUpdate()
     {
-        if (rotateEnabled && rotate.isTrue)
+        if (rotate.isTrue)
         {
             Rotate(rotate.direction);
-            // Rotate(keyData.x);
         }
-
-        if (driveEnabled && drive.isTrue)
+        if (drive.isTrue && !isJumping && state == PlayerState.ON_GROUND)
         {
             Drive(drive.direction);
         }
