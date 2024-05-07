@@ -68,6 +68,14 @@ public class Player_Controller : TankParent, IJumpable
         }
     }
 
+    private void Update()
+    {
+        if (CheckState(State.IsPlanning))
+        {
+            onPlanning?.Invoke();
+        }
+    }
+
     private void FixedUpdate()
     {
         if (CheckState(State.IsRotating))
