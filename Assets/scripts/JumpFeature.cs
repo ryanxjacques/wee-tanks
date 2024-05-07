@@ -11,6 +11,16 @@ using UnityEngine;
  *         trajectory.
  * Credit: LlamAcademy "Projectile Trajectory with Simple Math & Line Renderer"
  */
+
+public interface IJumpable
+{
+    event Action onJumping;
+    event Action onPlanning;
+    event Action onGround;
+    float GetSpeed();
+}
+
+[RequireComponent(typeof(Rigidbody))]
 public class JumpFeature : MonoBehaviour
 {
     [SerializeField]
@@ -22,13 +32,47 @@ public class JumpFeature : MonoBehaviour
     [SerializeField]
     [Range(0.01f, 0.25f)]
     private float TimeBetweenPoints = 0.1f;
+    private Rigidbody _rigidbody;
+    private float speed;
+    private object _subject;
 
-    public void DrawProjection(Vector3 startPosition, Vector3 direction, float speed) 
+    public void InitializeJumpFeature<T>(T subject) where T : IJumpable, IStateful
+    {
+        subject.onPlanning += OnPlanningObserver;
+        subject.onJumping += OnJumpingObserver;
+        subject.onGround += OnGroundObserver;
+        this._subject = subject;
+        this.speed = subject.GetSpeed();
+    }
+
+    private void OnPlanningObserver()
     {
         LineRenderer.enabled = true;
         LineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
-        Vector3 startVelocity = new Vector3(direction.x * speed, 10.0f, direction.z * speed);
+        DrawProjection();
+    }
 
+    private void OnJumpingObserver()
+    {
+        Jump();
+        (_subject as IStateful)?.SetState(State.OnGround, false);
+    }
+
+    private void OnGroundObserver()
+    {
+        LineRenderer.enabled = false;
+    }
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    public void DrawProjection() 
+    {
+        Vector3 direction = transform.rotation * new Vector3(-1, 0, 0);
+        Vector3 startPosition = transform.position;
+        Vector3 startVelocity = new Vector3(direction.x * speed, 10.0f, direction.z * speed);
         int i = 0;
         LineRenderer.SetPosition(i, startPosition);
         for (float time = 0; time < LinePoints; time += TimeBetweenPoints)
@@ -40,10 +84,9 @@ public class JumpFeature : MonoBehaviour
         }   
     }
 
-    public void Jump(Rigidbody entity, Vector3 direction, float speed)
+    public void Jump()
     {
-        entity.velocity = new Vector3(direction.x * speed, 10f, direction.z * speed);
-        LineRenderer.enabled = false;
-
+        Vector3 direction = transform.rotation * new Vector3(-1, 0, 0);
+        _rigidbody.velocity = new Vector3(direction.x * speed, 10f, direction.z * speed);
     }
 }

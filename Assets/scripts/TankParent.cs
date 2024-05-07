@@ -1,31 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+// public interface ITank<State> where State : Enum
+// {
+//     State state {get; set;}
+// }
 
 
 /* Used in Child Class (i.e. Player Controller). I get Unity 
   'ExtensionOfNativeClass' Error if this struct isn't delcare here. */
-public struct Direction
-{
-    public float drive;
-    public float rotate;
-    public Direction(float drive = 0, float rotate = 0)
-    {
-        this.drive = drive;
-        this.rotate = rotate;
-    }
-}
+
+// [Flags]
+// public enum State { }
 
 /* Comment's Date: 30th April 2024
  * The TankParent Component defines how a tank moves. A tank should be able to
  * drive fowards and backwards, and rotate left and right.
  */
-public class TankParent : MonoBehaviour
+public class TankParent : Entity
 {
-    protected Vector3 forward = new Vector3 (1,0,0);
+    protected Vector3 forward = new Vector3 (1,0,0); // Do not change! If you do, change all lines that calculate forward.
     [Header("Tank Movement")]
     [SerializeField] protected float speed = 1;
     [SerializeField] protected float rotation_speed = 10;
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
 
     protected void Drive(float direction)
     {
@@ -58,12 +62,12 @@ public class TankParent : MonoBehaviour
     protected void RotateLeft()
     {
         transform.rotation = Quaternion.AngleAxis(-rotation_speed, Vector3.up) * transform.rotation;
-        forward = Quaternion.AngleAxis(-rotation_speed, Vector3.up) * forward;
+        forward = transform.rotation * new Vector3(-1, 0, 0);
     }
 
     protected void RotateRight()
     {
         transform.rotation = Quaternion.AngleAxis(rotation_speed, Vector3.up) * transform.rotation;
-        forward = Quaternion.AngleAxis(rotation_speed, Vector3.up) * forward; 
+        forward = transform.rotation * new Vector3(-1, 0, 0);
     }
 }
