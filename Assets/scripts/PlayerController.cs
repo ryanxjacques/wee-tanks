@@ -46,19 +46,19 @@ public class Player_Controller : TankParent, IJumpable
             SetState(State.IsRotating, button.isDown);
             direction.rotate = button.value; 
         }
-        if (button.name == "Jump" && CheckState(State.OnGround))
+        if (button.name == "Jump")
         {
             SetState(State.IsPlanning, button.isDown);
-            onPlanning?.Invoke();
         }
         if (button.name == "Jump" && button.isDown == false && CheckState(State.OnGround))
         {
-            Debug.Log($"{button.name}, {button.isDown}, {CheckState(State.OnGround)}");
             _audioSource.Play();
             onJumping?.Invoke();
         }
     }
 
+    // TODO: make a CollisionManager Component. Have it be responsible for reseting 
+    // the rigidbody's angular velocity and x,z rotation.
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Solid"))

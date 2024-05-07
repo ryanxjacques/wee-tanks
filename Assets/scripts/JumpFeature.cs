@@ -47,9 +47,12 @@ public class JumpFeature : MonoBehaviour
 
     private void OnPlanningObserver()
     {
-        LineRenderer.enabled = true;
-        LineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
-        DrawProjection();
+        if ((_subject as IStateful).CheckState(State.OnGround))
+        {
+            LineRenderer.enabled = true;
+            LineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
+            DrawProjection();
+        }
     }
 
     private void OnJumpingObserver()
@@ -86,6 +89,12 @@ public class JumpFeature : MonoBehaviour
 
     public void Jump()
     {
+        // BUG FIX: Tank flips after jumping.
+        // Reset angular velocity and (x, z) rotation. This keeps the tank parallel to the ground.
+        _rigidbody.angularVelocity = Vector3.zero;
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        
+        // Now that the rotation of the tank is corrected, carry on.
         Vector3 direction = transform.rotation * new Vector3(-1, 0, 0);
         _rigidbody.velocity = new Vector3(direction.x * speed, 10f, direction.z * speed);
     }
