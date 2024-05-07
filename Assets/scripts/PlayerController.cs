@@ -46,12 +46,14 @@ public class Player_Controller : TankParent, IJumpable
             SetState(State.IsRotating, button.isDown);
             direction.rotate = button.value; 
         }
-        if (button.name == "Jump")
+        if (button.name == "Jump" && CheckState(State.OnGround))
         {
             SetState(State.IsPlanning, button.isDown);
+            onPlanning?.Invoke();
         }
-        if (button.name == "Jump" && button.isDown == false)
+        if (button.name == "Jump" && button.isDown == false && CheckState(State.OnGround))
         {
+            Debug.Log($"{button.name}, {button.isDown}, {CheckState(State.OnGround)}");
             _audioSource.Play();
             onJumping?.Invoke();
         }
@@ -63,14 +65,6 @@ public class Player_Controller : TankParent, IJumpable
         {
             SetState(State.OnGround, true);
             onGround.Invoke();
-        }
-    }
-
-    private void Update()
-    {
-        if (CheckState(State.IsPlanning))
-        {
-            onPlanning?.Invoke();
         }
     }
 
