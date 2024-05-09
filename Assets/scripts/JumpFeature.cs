@@ -41,7 +41,8 @@ public class JumpFeature : MonoBehaviour
     private float _velocity_;
     private Rigidbody _rigidbody;
     private object _subject;
-
+    private LayerMask JumpFeatureCollisionMask;
+    private int jumpFeatureLayer;
 
     public void InitializeJumpFeature<T>(T subject) where T : IJumpable, IStateful
     {
@@ -49,10 +50,21 @@ public class JumpFeature : MonoBehaviour
         subject.onJumping += OnJumpingObserver;
         subject.onGround += OnGroundObserver;
         this._subject = subject;
-        // jumpGrowthRate = Speed over Distance * FrameRate.
-        this.jumpGrowthRate = subject.GetSpeed() / ((maxDist - minDist) * 50);
-        Debug.Log(jumpGrowthRate);
-        Debug.Log(Time.frameCount);
+        this.jumpGrowthRate = subject.GetSpeed() / ((maxDist - minDist) * 50);  // Speed over Distance * FrameRate.
+        jumpFeatureLayer = this.gameObject.layer;
+        CreateCollisionMask();
+    }
+
+    private void CreateCollisionMask()
+    {
+        for (int i = 0; i < 32; i++) // 32 possible layers because an integer has 32 bits. 
+        {
+            if (!Physics.GetIgnoreLayerCollision(jumpFeatureLayer, i))
+            {
+                int currentLayer = 1 << i;
+                JumpFeatureCollisionMask |= currentLayer;
+            }
+        }
     }
 
     private void OnPlanningObserver()
@@ -113,7 +125,26 @@ public class JumpFeature : MonoBehaviour
             Vector3 point = startPosition + time * startVelocity;
             point.y = startPosition.y + startVelocity.y * time + (Physics.gravity.y / 2f * time * time);
             LineRenderer.SetPosition(i, point);
-        }   
+            
+            // RayCasting Stuff (Messy Code for now while I'm learning.)
+            Vector3 lastPosition = LineRenderer.GetPosition(i-1);
+            Vector3 origin = lastPosition;
+            Vector3 rayDirection = (point-lastPosition).normalized;
+            RaycastHit hit;
+            float maxDistance = (point - lastPosition).magnitude;
+            // Check if the Raycast hit something (i.e. an gameObject in a collisionLayer).
+            if (Physics.Raycast(origin,
+                            rayDirection,
+                            out hit,    // Out keyword means pass by reference rather than value.
+                            maxDistance,
+                            JumpFeatureCollisionMask))
+            {
+                // hit is a struct that contains information about the Raycast.
+                LineRenderer.SetPosition(i, hit.point); // Move the last point to exactly where the raycast hit.
+                LineRenderer.positionCount = i + 1; // Stop rendering more points by setting the limit of PositionCount.
+                return;
+            }
+        } 
     }
 
     private void Jump(float speed)
@@ -128,3 +159,4 @@ public class JumpFeature : MonoBehaviour
         _rigidbody.velocity = new Vector3(direction.x * speed, 10f, direction.z * speed);
     }
 }
+    
