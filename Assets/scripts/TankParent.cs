@@ -23,8 +23,8 @@ public class TankParent : Entity
 {
     protected Vector3 forward = new Vector3 (1,0,0); // Do not change! If you do, change all lines that calculate forward.
     [Header("Tank Movement")]
-    [SerializeField] protected float speed = 1;
-    [SerializeField] protected float rotation_speed = 10;
+    [SerializeField] protected float speed = 1f;
+    [SerializeField] protected float rotation_speed = 10f;
 
     public float GetSpeed()
     {

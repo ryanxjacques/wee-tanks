@@ -32,9 +32,16 @@ public class JumpFeature : MonoBehaviour
     [SerializeField]
     [Range(0.01f, 0.25f)]
     private float TimeBetweenPoints = 0.1f;
+    [SerializeField]
+    private float minDist = 0f;
+    [SerializeField]
+    private float maxDist = 20.0f;
+    private float jumpGrowthRate;
+    private float durationTime = 0;
+    private float _velocity_;
     private Rigidbody _rigidbody;
-    private float speed;
     private object _subject;
+
 
     public void InitializeJumpFeature<T>(T subject) where T : IJumpable, IStateful
     {
@@ -42,7 +49,10 @@ public class JumpFeature : MonoBehaviour
         subject.onJumping += OnJumpingObserver;
         subject.onGround += OnGroundObserver;
         this._subject = subject;
-        this.speed = subject.GetSpeed();
+        // jumpGrowthRate = Speed over Distance * FrameRate.
+        this.jumpGrowthRate = subject.GetSpeed() / ((maxDist - minDist) * 50);
+        Debug.Log(jumpGrowthRate);
+        Debug.Log(Time.frameCount);
     }
 
     private void OnPlanningObserver()
@@ -51,18 +61,21 @@ public class JumpFeature : MonoBehaviour
         {
             LineRenderer.enabled = true;
             LineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
-            DrawProjection();
+            _velocity_ = LerpJumpDistance();
+            incrementDuration();
+            DrawProjection(_velocity_);
         }
     }
 
     private void OnJumpingObserver()
     {
-        Jump();
+        Jump(_velocity_);
         (_subject as IStateful)?.SetState(State.OnGround, false);
     }
 
     private void OnGroundObserver()
     {
+        durationTime = 0;
         LineRenderer.enabled = false;
     }
 
@@ -71,7 +84,23 @@ public class JumpFeature : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void DrawProjection() 
+    private void incrementDuration()
+    {
+        if (durationTime == 1f)
+            return;
+        if (durationTime > 1f) {
+            durationTime = 1f;
+            return;
+        }
+        durationTime += jumpGrowthRate;
+    }
+
+    private float LerpJumpDistance()
+    {
+        return (1 - durationTime) * minDist + durationTime * maxDist;
+    }
+
+    private void DrawProjection(float speed) 
     {
         Vector3 direction = transform.rotation * new Vector3(-1, 0, 0);
         Vector3 startPosition = transform.position;
@@ -87,7 +116,7 @@ public class JumpFeature : MonoBehaviour
         }   
     }
 
-    public void Jump()
+    private void Jump(float speed)
     {
         // BUG FIX: Tank flips after jumping.
         // Reset angular velocity and (x, z) rotation. This keeps the tank parallel to the ground.
