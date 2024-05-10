@@ -439,6 +439,8 @@ MonoBehaviour:
   TimeBetweenPoints: 0.01
   minDist: 0
   maxDist: 20
+  minRadius: 1
+  maxRadius: 3
 --- !u!23 &342985555
 MeshRenderer:
   m_ObjectHideFlags: 0
