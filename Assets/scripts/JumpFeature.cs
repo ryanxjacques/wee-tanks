@@ -23,9 +23,12 @@ public interface IJumpable
 [RequireComponent(typeof(Rigidbody))]
 public class JumpFeature : MonoBehaviour
 {
+    [Header("Assets")]
     [SerializeField]
     private LineRenderer LineRenderer;
-    [Header("Display Controls Test")]
+    [SerializeField]
+    private GameObject JumpReticleAsset;
+    [Header("Display Controls")]
     [SerializeField] 
     [Range(10, 100)] 
     private int LinePoints = 25;
@@ -36,6 +39,9 @@ public class JumpFeature : MonoBehaviour
     private float minDist = 0f;
     [SerializeField]
     private float maxDist = 20.0f;
+
+    // Do not modify.
+    private GameObject JumpReticle;
     private float jumpGrowthRate;
     private float durationTime = 0;
     private float _velocity_;
@@ -43,6 +49,14 @@ public class JumpFeature : MonoBehaviour
     private object _subject;
     private LayerMask JumpFeatureCollisionMask;
     private int jumpFeatureLayer;
+
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+        JumpReticle = Instantiate(JumpReticleAsset, new Vector3(0, 0, 0), Quaternion.identity);
+        JumpReticle.SetActive(false); // stop Updating the JumpReticle (i.e. rendering it).
+    }
 
     public void InitializeJumpFeature<T>(T subject) where T : IJumpable, IStateful
     {
@@ -72,6 +86,7 @@ public class JumpFeature : MonoBehaviour
         if ((_subject as IStateful).CheckState(State.OnGround))
         {
             LineRenderer.enabled = true;
+            JumpReticle.SetActive(true); 
             LineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
             _velocity_ = LerpJumpDistance();
             incrementDuration();
@@ -88,12 +103,8 @@ public class JumpFeature : MonoBehaviour
     private void OnGroundObserver()
     {
         durationTime = 0;
+        JumpReticle.SetActive(false); 
         LineRenderer.enabled = false;
-    }
-
-    private void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void incrementDuration()
@@ -141,10 +152,11 @@ public class JumpFeature : MonoBehaviour
             {
                 // hit is a struct that contains information about the Raycast.
                 LineRenderer.SetPosition(i, hit.point); // Move the last point to exactly where the raycast hit.
+                JumpReticle.transform.position = new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z);
                 LineRenderer.positionCount = i + 1; // Stop rendering more points by setting the limit of PositionCount.
                 return;
             }
-        } 
+        }
     }
 
     private void Jump(float speed)

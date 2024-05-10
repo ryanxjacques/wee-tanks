@@ -434,6 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LineRenderer: {fileID: 342985550}
+  JumpReticleAsset: {fileID: 2160765626942062954, guid: 443ad111ec03f4e9ba70116559e61a53, type: 3}
   LinePoints: 25
   TimeBetweenPoints: 0.01
   minDist: 0
