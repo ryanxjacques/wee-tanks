@@ -39,6 +39,11 @@ public class JumpFeature : MonoBehaviour
     private float minDist = 0f;
     [SerializeField]
     private float maxDist = 20.0f;
+    [SerializeField]
+    private float minRadius = 1f;
+    [SerializeField]
+    private float maxRadius = 2.0f;
+
 
     // Do not modify.
     private GameObject JumpReticle;
@@ -89,6 +94,7 @@ public class JumpFeature : MonoBehaviour
             JumpReticle.SetActive(true); 
             LineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
             _velocity_ = LerpJumpDistance();
+            JumpReticle.transform.localScale = new Vector3(1 * LerpJumpReticle(), 0, 1 * LerpJumpReticle());
             incrementDuration();
             DrawProjection(_velocity_);
         }
@@ -118,9 +124,15 @@ public class JumpFeature : MonoBehaviour
         durationTime += jumpGrowthRate;
     }
 
+    // TODO: Combine these two functions.
     private float LerpJumpDistance()
     {
         return (1 - durationTime) * minDist + durationTime * maxDist;
+    }
+
+    private float LerpJumpReticle()
+    {
+        return (1 - durationTime) * minRadius + durationTime * maxRadius;
     }
 
     private void DrawProjection(float speed) 
