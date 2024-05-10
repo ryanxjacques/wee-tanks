@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Solid
+  - impact_zone
+  - enemy
   layers:
   - Default
   - TransparentFX
