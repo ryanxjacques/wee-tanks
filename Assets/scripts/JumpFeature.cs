@@ -52,7 +52,8 @@ public class JumpFeature : MonoBehaviour
     private float jumpGrowthRate;
     private float durationTime;
     private int maxPoints;
-    private float _velocity_;
+    private float jumpDistance;
+    private float impactRadius;
     private object subject;
 
     // Start is called before the first frame.
@@ -66,6 +67,8 @@ public class JumpFeature : MonoBehaviour
                                   new Vector3(0, 0, 0), 
                                   Quaternion.identity);
         JumpReticle.SetActive(false);
+        jumpFeatureLayer = gameObject.layer;
+        CreateCollisionMask();
     }
 
     // Call by the script you wish to make jumpable. 
@@ -77,17 +80,15 @@ public class JumpFeature : MonoBehaviour
         subject.onJumping += OnJumpingObserver;
         subject.onGround += OnGroundObserver;
         this.subject = subject;
-        jumpGrowthRate = subject.GetSpeed() / ((maxDist - minDist) * 50);
-        jumpFeatureLayer = this.gameObject.layer;
-        CreateCollisionMask();
+        CalculateGrowthRate(subject.GetSpeed());
     }
 
     // Growth Rate should be the same speed as the entity to prevent jumping
     // from being faster than regular moving.
-    private float CalculateGrowthRate(float entitySpeed)
+    private void CalculateGrowthRate(float speed)
     {
         int FRAMERATE = 50;  // Assuming a 50 Fps.
-        return entitySpeed / ((this.maxDist - this.minDist) * FRAMERATE);
+        jumpGrowthRate = speed / ((this.maxDist - this.minDist) * FRAMERATE);
     }
 
     // A collision mask is a 32-bit string where each bit represents a layer.
@@ -111,51 +112,49 @@ public class JumpFeature : MonoBehaviour
     // so that the framerate is constant 50 Fps.
     private void OnPlanningObserver()
     {
-        // Must check if the subject is Stateful, 
-        // otherwise the compiler will complain.
-        if ((subject as IStateful).CheckState(State.OnGround))
-        {
-            lineRenderer.enabled = true;
-            lineRenderer.positionCount = maxPoints;
+        // Leave early if subject is not on the ground.
+        if (!((subject as IStateful).CheckState(State.OnGround)))
+            return;
 
-            JumpReticle.SetActive(true);
-/* -------------------------- Have not Refactored Code Past this point ------------------------- */
-            JumpReticle.transform.localScale = new Vector3(1 * LerpJumpReticle(), 0, 1 * LerpJumpReticle());
-            _velocity_ = LerpJumpDistance();
-            
-            incrementDuration();
-            DrawProjection(_velocity_);
-        }
+        // Grow the jumpDistance and impactRadius w.r.t. durationTime.
+        jumpDistance = Lerp(minDist, maxDist, durationTime);
+        impactRadius = Lerp(minRadius, maxRadius, durationTime);
+        Vector3 newSize = new Vector3(impactRadius, 0, impactRadius);
+        JumpReticle.transform.localScale = newSize;
+
+        // Render the trajectory and JumpReticle.
+        lineRenderer.positionCount = maxPoints;  // Reset # of points in line.
+        lineRenderer.enabled = true;
+        JumpReticle.SetActive(true);
+        DrawProjection(jumpDistance);
+        incrementDuration();
     }
-
+    
+    // Subject should invoke the action OnJumping to initate this method.
     private void OnJumpingObserver()
     {
-        Jump(_velocity_);
+        Jump(jumpDistance); 
         (subject as IStateful)?.SetState(State.OnGround, false);
     }
 
+    // Stop rendering the trajectory and JumpReticle and reset durationTime.
     private void OnGroundObserver()
     {
         durationTime = 0;
-        JumpReticle.SetActive(false); 
         lineRenderer.enabled = false;
+        JumpReticle.SetActive(false); 
     }
 
-    // Increment value until it reaches the max.
+    // Increment timeDuration until it reaches a max of 1.
     private void incrementDuration()
     {
         durationTime = Math.Min(durationTime + jumpGrowthRate, 1f);
     }
 
-    // TODO: Combine these two functions.
-    private float LerpJumpDistance()
+    // Standard Linear Interpolation Algorithm.
+    private float Lerp(float minValue, float maxValue, float factor)
     {
-        return (1 - durationTime) * minDist + durationTime * maxDist;
-    }
-
-    private float LerpJumpReticle()
-    {
-        return (1 - durationTime) * minRadius + durationTime * maxRadius;
+        return (1 - factor) * minValue + factor * maxValue;
     }
 
     private void DrawProjection(float speed) 
@@ -194,10 +193,11 @@ public class JumpFeature : MonoBehaviour
         }
     }
 
+    // Apply an instance velocity change to the rigidbody attached to this script. 
     private void Jump(float speed)
     {
-        // BUG FIX: Tank flips after jumping.
-        // Reset angular velocity and (x, z) rotation. This keeps the tank parallel to the ground.
+        // Reset angular velocity and (x, z) rotation to keep this subject
+        // parallel to the ground.
         rigidbody.angularVelocity = Vector3.zero;
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         
