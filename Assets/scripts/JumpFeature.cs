@@ -44,7 +44,7 @@ public class JumpFeature : MonoBehaviour
     [SerializeField] private float maxRadius;
 
     /* Instance Variables */
-    private Rigidbody rigidbody;
+    private Rigidbody _rigidbody;
     private LineRenderer lineRenderer;
     private GameObject JumpReticle;
     private LayerMask JumpFeatureCollisionMask;
@@ -60,7 +60,7 @@ public class JumpFeature : MonoBehaviour
     private void Start()
     {
         durationTime = 0;
-        rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
         lineRenderer = GetComponent<LineRenderer>();
         maxPoints = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
         JumpReticle = Instantiate(JumpReticleAsset, 
@@ -198,12 +198,12 @@ public class JumpFeature : MonoBehaviour
     {
         // Reset angular velocity and (x, z) rotation to keep this subject
         // parallel to the ground.
-        rigidbody.angularVelocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         
         // Now that the rotation of the tank is corrected, carry on.
         Vector3 direction = transform.rotation * new Vector3(-1, 0, 0);
-        rigidbody.velocity = new Vector3(direction.x * speed, 10f, direction.z * speed);
+        _rigidbody.velocity = new Vector3(direction.x * speed, 10f, direction.z * speed);
     }
 }
     

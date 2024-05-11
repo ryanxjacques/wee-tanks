@@ -13,11 +13,12 @@ using System;
 
 [RequireComponent(typeof(JumpFeature))]
 [RequireComponent(typeof(InputController))]
-public class Player_Controller : TankParent, IJumpable
+public class PlayerController : TankParent, IJumpable
 {
     private JumpFeature _jumpFeature;
     private InputController _inputController;
     private AudioSource _audioSource;
+    private Squished _squished;
     private Vector3 velocity;
     private Direction direction = new Direction();  //< Def. of Direction is in Entity.cs
     public event Action onPlanning;

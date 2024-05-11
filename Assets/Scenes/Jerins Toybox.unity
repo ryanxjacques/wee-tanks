@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -504,6 +504,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6298437297890948051, guid: 81b0caa50cb2f1a449c823fae332a9a9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7504316879801586645, guid: 81b0caa50cb2f1a449c823fae332a9a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42.5
@@ -544,6 +548,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9028010499468327344, guid: 81b0caa50cb2f1a449c823fae332a9a9, type: 3}
+      propertyPath: JumpReticleAsset
+      value: 
+      objectReference: {fileID: 2160765626942062954, guid: 443ad111ec03f4e9ba70116559e61a53, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
