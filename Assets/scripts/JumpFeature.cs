@@ -184,9 +184,10 @@ public class JumpFeature : MonoBehaviour
                             maxDistance,
                             JumpFeatureCollisionMask))
             {
+ 
                 // hit is a struct that contains information about the Raycast.
                 lineRenderer.SetPosition(i, hit.point); // Move the last point to exactly where the raycast hit.
-                JumpReticle.transform.position = new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z);
+                JumpReticle.transform.position = new Vector3(hit.point.x, hit.point.y + 1f, hit.point.z);
                 lineRenderer.positionCount = i + 1; // Stop rendering more points by setting the limit of PositionCount.
                 return;
             }

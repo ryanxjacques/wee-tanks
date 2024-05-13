@@ -110,7 +110,7 @@ MonoBehaviour:
   minDist: 0
   maxDist: 20
   minRadius: 0
-  maxRadius: 0
+  maxRadius: 3
 --- !u!114 &7238548880284790025
 MonoBehaviour:
   m_ObjectHideFlags: 0

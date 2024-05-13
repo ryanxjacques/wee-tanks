@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3876798955283388868}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: JumpReticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1027952809127982615}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7035015960068970308}
   - component: {fileID: 3988545296084426914}
   - component: {fileID: 7875926567654270182}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: JumpReticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
