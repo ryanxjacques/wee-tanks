@@ -18,6 +18,8 @@ public class PlayerController : TankParent, IJumpable
     private JumpFeature _jumpFeature;
     private InputController _inputController;
     private AudioSource _audioSource;
+    public AudioClip jump;
+    public AudioClip move;
     private Squished _squished;
     private Vector3 velocity;
     private Direction direction = new Direction();  //< Def. of Direction is in Entity.cs
@@ -41,6 +43,8 @@ public class PlayerController : TankParent, IJumpable
         {
             SetState(State.IsDriving, button.isDown);
             direction.drive = button.value;
+
+            _audioSource.PlayOneShot(move,0.7f);
         }
         if (button.name == "Rotate")
         {
@@ -53,7 +57,7 @@ public class PlayerController : TankParent, IJumpable
         }
         if (button.name == "Jump" && button.isDown == false && CheckState(State.OnGround))
         {
-            _audioSource.Play();
+            _audioSource.PlayOneShot(jump,0.7f);
             onJumping?.Invoke();
         }
     }
