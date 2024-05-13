@@ -65,6 +65,7 @@ public class PlayerController : TankParent, IJumpable
         if (collision.gameObject.CompareTag("Solid"))
         {
             SetState(State.OnGround, true);
+            forward = transform.rotation * new Vector3(-1, 0, 0); // Recalibrate rotation
             onGround.Invoke();
         }
     }

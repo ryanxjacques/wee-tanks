@@ -146,7 +146,7 @@ public class JumpFeature : MonoBehaviour
         
         // Reset all velocities and rotation when the subject contacts the ground.
         _rigidbody.angularVelocity = Vector3.zero;
-        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        // transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         _rigidbody.velocity = new Vector3(0, 0, 0);
     }
 
