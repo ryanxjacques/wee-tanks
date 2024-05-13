@@ -143,6 +143,11 @@ public class JumpFeature : MonoBehaviour
         durationTime = 0;
         lineRenderer.enabled = false;
         JumpReticle.SetActive(false); 
+        
+        // Reset all velocities and rotation when the subject contacts the ground.
+        _rigidbody.angularVelocity = Vector3.zero;
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        _rigidbody.velocity = new Vector3(0, 0, 0);
     }
 
     // Increment timeDuration until it reaches a max of 1.
