@@ -1167,6 +1167,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: tutorial_box
       objectReference: {fileID: 0}
+    - target: {fileID: 5762085868065666485, guid: 8545d364c03265740b7c5e21a0bab46f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762085868065666485, guid: 8545d364c03265740b7c5e21a0bab46f, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
