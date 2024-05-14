@@ -20,6 +20,7 @@ public class PlayerController : TankParent, IJumpable
     private AudioSource _audioSource;
     public AudioClip jump;
     public AudioClip move;
+    public AudioClip ost;
     private Squished _squished;
     private Vector3 velocity;
     private Direction direction = new Direction();  //< Def. of Direction is in Entity.cs
@@ -35,6 +36,7 @@ public class PlayerController : TankParent, IJumpable
         _jumpFeature = GetComponent<JumpFeature>();
         _jumpFeature.InitializeJumpFeature(this);
         _audioSource = GetComponent<AudioSource>();
+        _audioSource.PlayOneShot(ost,0.7f);
     }
 
     private void OnButtonObserver(Button button)
