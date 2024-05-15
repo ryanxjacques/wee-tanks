@@ -13,7 +13,6 @@ using UnityEngine;
 public class Squished : MonoBehaviour
 {
     private PlayerController player;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +23,8 @@ public class Squished : MonoBehaviour
     {
         // Activate collision only when player is not on ground.
         if (other.gameObject.tag == "enemy" && !player.CheckState(State.OnGround))
-            Destroy(other.gameObject);
+        {
+            other.gameObject.GetComponent<enemy_hit>().Death();
+        }
     }
 }

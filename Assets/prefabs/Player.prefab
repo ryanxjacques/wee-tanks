@@ -137,6 +137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   rotation_speed: 3
+  jump: {fileID: 0}
+  move: {fileID: 0}
+  ost: {fileID: 0}
 --- !u!114 &7856248955141729536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,9 +559,9 @@ Transform:
   m_GameObject: {fileID: 3962442874864038135}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.04, z: 0}
-  m_LocalScale: {x: 0.10151966, y: 0.01, z: 0.14999999}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalScale: {x: 0.07106379, y: 0.00070000027, z: 0.105}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7504316879801586645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
