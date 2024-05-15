@@ -3,21 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-// public interface ITank<State> where State : Enum
-// {
-//     State state {get; set;}
-// }
 
-
-/* Used in Child Class (i.e. Player Controller). I get Unity 
-  'ExtensionOfNativeClass' Error if this struct isn't delcare here. */
-
-// [Flags]
-// public enum State { }
-
-/* Comment's Date: 30th April 2024
- * The TankParent Component defines how a tank moves. A tank should be able to
- * drive fowards and backwards, and rotate left and right.
+/**
+ * @brief Abstract class for tank behaving entities.
+ * 
+ * @data 14th May 2024
+ *
+ * This class defines how a tank should move.
  */
 public class TankParent : Entity
 {

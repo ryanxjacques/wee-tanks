@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/**
+ * @brief Allow the player to squish enemies.
+ * 
+ * @data 14th May 2024
+ *
+ * This class allows a player to destroy enemies by jumping on them.
+ */
 public class Squished : MonoBehaviour
 {
     private PlayerController player;

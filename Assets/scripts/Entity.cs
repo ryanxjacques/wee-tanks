@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 /* Note: Each entity will HAVE to have this enum. They cannot define their
    own enum because enums cannot be abstract/derived/inherited. They are
    treated like values. So, the cleanist solution is to give all entities
@@ -16,6 +17,7 @@ public enum State
     IsJumping  = 1 << 3, // 010000
     IsPlanning = 1 << 4, // 100000
 }
+
 
 /* I wish I could move the Direction struct to the PlayerController file
    but Unity will complain that Direction is a class that is not derived
@@ -31,12 +33,14 @@ struct Direction
     }
 }
 
+
 public interface IStateful
 {
     bool CheckState(State state);
     bool CheckStates(params (State state, bool value)[] states);
     void SetState(State state, bool value);
 }
+
 
 /* The Entity Parent class handles the state changing.
 */

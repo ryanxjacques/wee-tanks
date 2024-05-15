@@ -3,15 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// THIS COMMENT IS OUT OF DATE!!
-/* Comment's Date: 30th April 2024
- * The JumpFeature component defines the player's jump.
- * Usuage: Call DrawProjection to display the entity's jump trajectory.
- *         Call Jump to add a force to the entity and to stop drawing the
- *         projection. The entity will travel according to its jump 
- *         trajectory.
- * Credit: LlamAcademy "Projectile Trajectory with Simple Math & Line Renderer"
- */
 
 public interface IJumpable
 {
@@ -21,6 +12,20 @@ public interface IJumpable
     float GetSpeed();
 }
 
+
+/**
+ * @brief Jump Controls for a Jumpable Entity
+ * 
+ * @data 14th May 2024
+ *
+ * This class should be attached to a IJumpable IStateful entity. The entity
+ * can invoke events "onPlanning" and "onJumping" to plan and jump 
+ * respectively. When the entities collides with the ground, they should
+ * invoke "onGround" to return to a default state.
+ *
+ * Credit: LlamAcademy "Projectile Trajectory with Simple Math & Line Renderer"
+ *      LlamAcademy's video helped with drawing the jump trajectory.
+ */
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(LineRenderer))]
 public class JumpFeature : MonoBehaviour

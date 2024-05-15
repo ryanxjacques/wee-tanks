@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-/* Comment's Date: 30th April 2024
- * The PlayerController class defines the player game object. It is a
- * derivative of the TankParent component. The PlayerController
- * communicates with the InputController and JumpFeature.
+
+/**
+ * @brief The player controller.
+ * 
+ * @data 14th May 2024
+ *
+ * This class defines the player's behavior as well as game audio. The player
+ * controller's main responsibility is to listen to the game environment and
+ * interact with different component API (i.e. JumpFeature, InputController,
+ * TankParent, Entity).
  */
-
-
-
 [RequireComponent(typeof(JumpFeature))]
 [RequireComponent(typeof(InputController))]
 public class PlayerController : TankParent, IJumpable
@@ -45,7 +48,6 @@ public class PlayerController : TankParent, IJumpable
         {
             SetState(State.IsDriving, button.isDown);
             direction.drive = button.value;
-
             _audioSource.PlayOneShot(move,0.7f);
         }
         if (button.name == "Rotate")
@@ -64,8 +66,6 @@ public class PlayerController : TankParent, IJumpable
         }
     }
 
-    // TODO: make a CollisionManager Component. Have it be responsible for reseting 
-    // the rigidbody's angular velocity and x,z rotation.
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Solid"))
