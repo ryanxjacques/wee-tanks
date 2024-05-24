@@ -30,6 +30,7 @@ public class PlayerController : TankParent, IJumpable
     public event Action onPlanning;
     public event Action onJumping;
     public event Action onGround;
+    public int targets_remaining;
 
     // Attach Observers
     private void Start()
@@ -40,6 +41,7 @@ public class PlayerController : TankParent, IJumpable
         _jumpFeature.InitializeJumpFeature(this);
         _audioSource = GetComponent<AudioSource>();
         _audioSource.PlayOneShot(ost,0.7f);
+        targets_remaining = 0;
     }
 
     private void OnButtonObserver(Button button)
@@ -90,6 +92,16 @@ public class PlayerController : TankParent, IJumpable
         {
             Drive(direction.drive);
         }
+    }
+    public void TargetFound()
+    {
+        targets_remaining +=1;
+        Debug.Log("targets up: " + targets_remaining.ToString());
+    }
+    public void TargetDown()
+    {
+        targets_remaining -=1;
+        Debug.Log("targets down: " + targets_remaining.ToString());
     }
 }
 
