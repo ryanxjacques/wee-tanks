@@ -1,44 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(InputController))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class ShooterController : TankParent
 {
-    private InputController _inputController;
+    private NavMeshAgent agent;
     private Direction direction = new Direction();
+    // private Direction agentDirection = new Direction();
+    private Vector3 agentForward;
     // Start is called before the first frame update
     void Start()
     {
-        _inputController = GetComponent<InputController>();
-        _inputController.onButton += OnButtonObserver;
+        agent = GetComponent<NavMeshAgent>();
+        // Disable NavMeshAgent auto-movement
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+        agent.SetDestination(new Vector3(-49, 0, 0));
     }
 
-    private void OnButtonObserver(Button button)
+    void Update()
     {
-        if (button.name == "Drive")
+        if (agent.pathPending || agent.remainingDistance > 0.1)
         {
-            SetState(State.IsDriving, button.isDown);
-            direction.drive = button.value;
+            agentForward = agent.velocity.normalized;
+            if (this.forward.x - 0.01f > agent.velocity.normalized.x)
+            {
+                SetState(State.IsRotating, true);
+                direction.rotate = -1;
+            } else if (this.forward.x + 0.01f < agent.velocity.normalized.x)
+            {
+                SetState(State.IsRotating, true);
+                direction.rotate = 1;
+            } else {
+                SetState(State.IsRotating, false);
+            }
+            if (CheckState(State.IsRotating) == false)
+            {
+                SetState(State.IsDriving, true);
+            }
         }
-        if (button.name == "Rotate")
+        else
         {
-            SetState(State.IsRotating, button.isDown);
-            direction.rotate = button.value; 
+            // Stop the agent when it reaches the destination
+            agent.isStopped = true;
+            SetState(State.IsRotating, false);
+            SetState(State.IsDriving, false);
         }
     }
-
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (CheckState(State.IsRotating))
         {
-            Rotate(direction.rotate);
+            Rotate(direction.rotate, agentForward);
         }
         if (CheckState(State.IsDriving))
         {
-            Drive(direction.drive);
-        }   
+            Drive(1);
+        }
     }
 }

@@ -40,6 +40,16 @@ public class TankParent : Entity
             RotateRight();
         }
     }
+    
+    // Used by AI
+    protected void Rotate(float direction, Vector3 bound)
+    {
+        if (direction == -1) {  // A is pressed
+            RotateLeft(bound);
+        } else if (direction == 1) { // D is pressed
+            RotateRight(bound);
+        }
+    }
 
     protected void DriveForward()
     {
@@ -61,5 +71,35 @@ public class TankParent : Entity
     {
         transform.rotation = Quaternion.AngleAxis(rotation_speed, Vector3.up) * transform.rotation;
         forward = transform.rotation * new Vector3(-1, 0, 0);
+    }
+
+    // Used by AI
+    protected void RotateLeft(Vector3 bound)
+    {
+        Quaternion targetRotation = Quaternion.AngleAxis(-rotation_speed, Vector3.up) * transform.rotation;
+        Vector3 targetForward = targetRotation * new Vector3(-1, 0, 0);
+        if (targetForward.x < bound.x) {
+            transform.rotation = targetRotation;
+            forward = bound;
+        } else if (targetForward.x > bound.x) {
+            transform.rotation = targetRotation;
+            forward = transform.rotation * new Vector3(-1, 0, 0);
+        }
+        Debug.Log($"LEFT {forward} {bound}");
+    }
+
+    // Used by AI
+    protected void RotateRight(Vector3 bound)
+    {
+        Quaternion targetRotation = Quaternion.AngleAxis(rotation_speed, Vector3.up) * transform.rotation;
+        Vector3 targetForward = targetRotation * new Vector3(-1, 0, 0);
+        if (targetForward.x > bound.x) {
+            transform.rotation = targetRotation;
+            forward = bound;
+        } else if (targetForward.x < bound.x) {
+            transform.rotation = targetRotation;
+            forward = transform.rotation * new Vector3(-1, 0, 0);
+        }
+        Debug.Log($"RIGHT {forward} {bound}");
     }
 }
