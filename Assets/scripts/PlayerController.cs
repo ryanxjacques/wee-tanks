@@ -30,7 +30,7 @@ public class PlayerController : TankParent, IJumpable
     public event Action onPlanning;
     public event Action onJumping;
     public event Action onGround;
-    public int targets_remaining;
+    public int targets_remaining;    //< Represents the total number of enemies in scene.
 
     // Attach Observers
     private void Start()
@@ -68,6 +68,18 @@ public class PlayerController : TankParent, IJumpable
         }
     }
 
+    // Increment the global enemy counter.
+    public void TargetFound()
+    {
+        targets_remaining +=1;
+    }
+    
+    // Decrement the enemy counter.
+    public void TargetDown()
+    {
+        targets_remaining -=1;
+    }
+
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Solid"))
@@ -92,16 +104,6 @@ public class PlayerController : TankParent, IJumpable
         {
             Drive(direction.drive);
         }
-    }
-    public void TargetFound()
-    {
-        targets_remaining +=1;
-        Debug.Log("targets up: " + targets_remaining.ToString());
-    }
-    public void TargetDown()
-    {
-        targets_remaining -=1;
-        Debug.Log("targets down: " + targets_remaining.ToString());
     }
 }
 
