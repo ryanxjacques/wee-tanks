@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// This is the AI script for Crasher. Attached to prefab 'Crasher'.
 public class Smashing : MonoBehaviour
 {
     public int move_speed = 10;

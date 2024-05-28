@@ -10,6 +10,10 @@ using UnityEngine;
  *
  * This class allows a player to destroy enemies by jumping on them.
  */
+
+// 
+//  This script is attached to 'impact hitbox' in the Player prefab object.
+//
 public class Squished : MonoBehaviour
 {
     private PlayerController player;
