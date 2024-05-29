@@ -18,6 +18,10 @@ public class ShooterController : MonoBehaviour
     public LayerMask whatIsPlayer;
     public LayerMask whatIsGround;
 
+    public GameObject bulletPrefab;
+    public float fireRate = 0.5f;
+    private float nextFire = 0.0f;
+
     public float sightRange;
     public float attackRange;
     public float walkPointRange;
@@ -70,32 +74,14 @@ public class ShooterController : MonoBehaviour
        
         if (!walkPointSet) {
             FindWalkPoint();
-            // Debug.Log("Setting walk point...");
         }
         if (walkPointSet) {
             agent.SetDestination(walkPoint);
-            // Debug.Log("Walk point set...");
-            Debug.Log((transform.position - walkPoint).magnitude);
         }
         
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         if (distanceToWalkPoint.magnitude < 8f)
             walkPointSet = false;
-    }
-
-    // Credit "Dave / GameDevelopment"
-    private void Chasing()
-    {
-        Debug.Log($"Chasing! {player.transform.position}");
-        agent.SetDestination(player.transform.position);
-    }
-
-    // Credit "Dave / GameDevelopment"
-    private void Attacking()
-    {
-        Debug.Log($"Attacking!");
-        agent.SetDestination(transform.position);
-        transform.LookAt(player.transform);
     }
 
     // Credit "Dave / GameDevelopment"
@@ -112,6 +98,34 @@ public class ShooterController : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
     }
+
+    // Credit "Dave / GameDevelopment"
+    private void Chasing()
+    {
+        agent.SetDestination(player.transform.position);
+    }
+
+    // Credit "Dave / GameDevelopment"
+    private void Attacking()
+    {
+        agent.SetDestination(transform.position);
+        transform.LookAt(player.transform);
+
+        // Cooldown implementation comes from the Unity API "manual pages".
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+        Vector3 bulletPosition = transform.position + transform.forward * 5f;
+        GameObject bullet = Instantiate(bulletPrefab, bulletPosition, transform.rotation);
+        Destroy(bullet, 5f);
+    }
+   
 
     void FixedUpdate(){}
 }

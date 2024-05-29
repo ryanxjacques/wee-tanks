@@ -383,7 +383,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -793,6 +793,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 7993982598810627253, guid: c4213f1a97eb31341932807a8b4e6ebe, type: 3}
+    - target: {fileID: 6031671981075345497, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031671981075345497, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6057793582949783210, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -805,7 +813,35 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7453932091306588742, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7453932091306588742, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493393935020718040, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493393935020718040, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955688310623886598, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955688310623886598, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 235663914221575283, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+    - {fileID: 54066493429308316, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+    - {fileID: 4658571026906265137, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
+    - {fileID: 4499185458999782234, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3791706220590317610, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
@@ -1035,7 +1071,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1141,7 +1177,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1277,30 +1313,6 @@ PrefabInstance:
     - target: {fileID: 6149930033884319702, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
       propertyPath: m_Name
       value: Shooter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
-      propertyPath: sightRange
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
-      propertyPath: attackRange
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
-      propertyPath: walkPointRange
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
-      propertyPath: playerLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
-      propertyPath: whatIsPlayer.m_Bits
-      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1645,7 +1657,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

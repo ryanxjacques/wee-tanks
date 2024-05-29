@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9066913212735353182}
   - component: {fileID: 7856651550331778298}
   - component: {fileID: 8367076555128025259}
+  - component: {fileID: 5365598878432166359}
   m_Layer: 7
   m_Name: Shooter
   m_TagString: enemy
@@ -90,6 +91,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a44333bd6954ad49a91ed2397029cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
+  bulletPrefab: {fileID: 7603570374716843767, guid: 923e4cd8b68e041ee9b0194df75e23ed, type: 3}
+  fireRate: 0.5
+  sightRange: 30
+  attackRange: 20
+  walkPointRange: 40
 --- !u!65 &7856651550331778298
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -109,8 +121,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.307955, y: 3.3699079, z: 6.165913}
+  m_Center: {x: 0.07365084, y: 1.7307916, z: 0.4102099}
 --- !u!195 &8367076555128025259
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -133,6 +145,18 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5365598878432166359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6149930033884319702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ea3f87f7ba3bb448b3a72a282d25d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &564681843434823056
 PrefabInstance:
   m_ObjectHideFlags: 0
