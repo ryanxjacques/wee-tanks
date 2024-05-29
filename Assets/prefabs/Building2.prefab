@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8141182472659928896}
   - component: {fileID: 3112105313724341281}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Building2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,9 +102,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8068073526183931155, guid: 1e3e40ce44250504aa77e46eeb906529, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3651946117224400969, guid: 1e3e40ce44250504aa77e46eeb906529, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -712370165454362749, guid: 1e3e40ce44250504aa77e46eeb906529, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1e3e40ce44250504aa77e46eeb906529, type: 3}
       propertyPath: m_Name
       value: building1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e3e40ce44250504aa77e46eeb906529, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701379803279484712, guid: 1e3e40ce44250504aa77e46eeb906529, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8531084230230199607, guid: 1e3e40ce44250504aa77e46eeb906529, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

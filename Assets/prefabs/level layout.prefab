@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4564721193804360489}
   - component: {fileID: 7548381463322028153}
   - component: {fileID: 5832519716783510099}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: South  Wall invis (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4998726649995251967}
   - component: {fileID: 8007905348142153769}
   - component: {fileID: 4309918056015880461}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: West Wall invis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 6485221450412092815}
   - component: {fileID: 4591437219167443556}
   - component: {fileID: 6031671981075345497}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: North  Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 2695237539889635394}
   - component: {fileID: 3354916615421863950}
   - component: {fileID: 7493393935020718040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: West Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 297112543466868742}
   - component: {fileID: 1763306282833741039}
   - component: {fileID: 3607592456628109213}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: North  Wall invis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 3140064590165895520}
   - component: {fileID: 6042386127639752287}
   - component: {fileID: 8687915280067170161}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: East Wall invis (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -674,7 +674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3791706220590317610}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 2299621819749800205}
   - component: {fileID: 5134818207554953449}
   - component: {fileID: 2275069605189873102}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Solid
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 4785794889687188413}
   - component: {fileID: 5958995103349865671}
   - component: {fileID: 7453932091306588742}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: South Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 4164286524159974116}
   - component: {fileID: 2026779635463466771}
   - component: {fileID: 8955688310623886598}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: East Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
