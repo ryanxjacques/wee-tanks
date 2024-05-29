@@ -15,6 +15,7 @@ public class ShooterController : MonoBehaviour
     private NavMeshAgent agent;
     private PlayerController _playerController;
     private GameObject player;
+    public LayerMask whatIsVisible;
     public LayerMask whatIsPlayer;
     public LayerMask whatIsGround;
 
@@ -51,9 +52,13 @@ public class ShooterController : MonoBehaviour
     // Credit "Dave / GameDevelopment"
     private void Update()
     {   
+        if (CheckVision() == false)
+        {
+            Patrolling();
+            return;
+        }
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
         if (!playerInSightRange && !playerInAttackRange)
         {
             Patrolling();
@@ -124,6 +129,29 @@ public class ShooterController : MonoBehaviour
         Vector3 bulletPosition = transform.position + transform.forward * 5f;
         GameObject bullet = Instantiate(bulletPrefab, bulletPosition, transform.rotation);
         Destroy(bullet, 5f);
+    }
+
+    private bool CheckVision()
+    {
+        // Calculate the direction from the enemy to the player
+        Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position,
+                            directionToPlayer,
+                            out hit,    // Out keyword means pass by reference rather than value.
+                            Mathf.Infinity,
+                            whatIsVisible.value))
+        {
+            // Check if the hit object is the player
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                // Ray hit the player.
+                return true;
+            }
+        }
+        // Ray did not hit the player.
+        return false;
     }
    
 

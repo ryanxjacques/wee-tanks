@@ -1314,6 +1314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooter
       objectReference: {fileID: 0}
+    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
+      propertyPath: whatIsObstacle.m_Bits
+      value: 201
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
