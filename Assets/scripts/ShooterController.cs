@@ -49,28 +49,26 @@ public class ShooterController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Credit "Dave / GameDevelopment"
+    // Modified version of "Dave / GameDevelopment"'s implementation.
     private void Update()
     {   
+        // Stop updating if the player is destroyed.
+        if (player == null)
+            return;
+
+        // Check if the shooter can see the player.
         if (CheckVision() == false)
         {
             Patrolling();
             return;
         }
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        if (!playerInSightRange && !playerInAttackRange)
-        {
-            Patrolling();
-        }
-        if (playerInSightRange && !playerInAttackRange)
-        {
-            Chasing();
-        }
-        if (playerInSightRange && playerInAttackRange)
-        {
-            Attacking();
-        }
+        
+        if (!playerInSightRange && !playerInAttackRange) Patrolling();
+        if (playerInSightRange && !playerInAttackRange) Chasing();
+        if (playerInSightRange && playerInAttackRange) Attacking();
     }
 
     // Credit "Dave / GameDevelopment"
@@ -89,7 +87,7 @@ public class ShooterController : MonoBehaviour
             walkPointSet = false;
     }
 
-    // Credit "Dave / GameDevelopment"
+    // Modified version of "Dave / GameDevelopment"'s implementation.
     private void FindWalkPoint()
     {
         // Choose a random point in the walk range.
@@ -110,7 +108,7 @@ public class ShooterController : MonoBehaviour
         agent.SetDestination(player.transform.position);
     }
 
-    // Credit "Dave / GameDevelopment"
+    // Modified version of "Dave / GameDevelopment"'s implementation.
     private void Attacking()
     {
         agent.SetDestination(transform.position);
@@ -123,7 +121,6 @@ public class ShooterController : MonoBehaviour
             Shoot();
         }
     }
-
     private void Shoot()
     {
         Vector3 bulletPosition = transform.position + transform.forward * 5f;
