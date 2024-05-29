@@ -109,7 +109,9 @@ public class PlayerController : TankParent, IJumpable
     }
     public void Death()
     {
-        Destroy(gameObject);
+        // Player is invulnerable in the air
+        if (CheckState(State.OnGround))
+            Destroy(gameObject);
     }
 }
 
