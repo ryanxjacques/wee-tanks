@@ -12,10 +12,7 @@ public class enemy_hit : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
 
-    }
     public void Death()
     {
         player.GetComponent<PlayerController>().TargetDown();

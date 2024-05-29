@@ -40,6 +40,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7726986673256140129}
+  - {fileID: 6626020786719545556}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5389262850091455068
@@ -140,7 +141,7 @@ MonoBehaviour:
   jump: {fileID: 0}
   move: {fileID: 0}
   ost: {fileID: 0}
-  targets_remaining: 0
+  targets_remaining: 3
 --- !u!114 &7856248955141729536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,67 +184,19 @@ MonoBehaviour:
     m_ActionId: 94d4af80-83b6-4988-a0ef-dcacac6d91c3
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7238548880284790025}
-        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
-        m_MethodName: ForwardButton
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 115b5f67-e51b-46d7-aa67-fa3d6094de4b
     m_ActionName: Player/Forward[/Keyboard/w]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7238548880284790025}
-        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
-        m_MethodName: ReverseButton
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 8a9856de-5b2a-4d59-b4f5-47926564b3d7
     m_ActionName: Player/Reverse[/Keyboard/s]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7238548880284790025}
-        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
-        m_MethodName: LeftButton
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 8fcbf4cd-d019-4076-8d4f-eb760771ad1c
     m_ActionName: Player/Left[/Keyboard/a]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7238548880284790025}
-        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
-        m_MethodName: RightButton
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: eede8f25-69c9-44ac-af51-5c2a94e7fd49
     m_ActionName: Player/RIght[/Keyboard/d]
   - m_PersistentCalls:
@@ -561,7 +514,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: -0.01, z: 0}
-  m_LocalScale: {x: 0.07106379, y: 0.00070000027, z: 0.105}
+  m_LocalScale: {x: 0.042638272, y: 0.00042000017, z: 0.063}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7504316879801586645}
@@ -651,3 +604,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2828c599d7d5c3c4db08ec3e00462b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &6665014851602530111
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7504316879801586645}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+      propertyPath: m_Name
+      value: tank
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+--- !u!4 &6626020786719545556 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ccb357fa484544c3909bd9dd10d62ec, type: 3}
+  m_PrefabInstance: {fileID: 6665014851602530111}
+  m_PrefabAsset: {fileID: 0}

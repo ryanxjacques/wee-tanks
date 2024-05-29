@@ -17,7 +17,13 @@ public class Smashing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player.transform);
-        transform.Translate(Vector3.forward*move_speed*Time.deltaTime);
+        if(player)
+        {
+            Vector3 playerpos = player.transform.position;
+            playerpos.y = transform.position.y;
+            transform.LookAt(playerpos);
+            transform.Translate(Vector3.forward*move_speed*Time.deltaTime);
+            transform.Rotate(0, 90, 0);
+        }
     }   
 }

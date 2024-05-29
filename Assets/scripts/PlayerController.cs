@@ -105,5 +105,9 @@ public class PlayerController : TankParent, IJumpable
             Drive(direction.drive);
         }
     }
+    public void Death()
+    {
+        Destroy(gameObject); ;
+    }
 }
 

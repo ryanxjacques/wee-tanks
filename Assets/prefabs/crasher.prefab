@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4428430564515103984}
   - component: {fileID: 769414981718150979}
   - component: {fileID: 7938342519014856283}
-  - component: {fileID: -8873004746383421685}
+  - component: {fileID: 6911498054141921101}
   m_Layer: 0
   m_Name: crasher
   m_TagString: enemy
@@ -148,7 +148,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8873004746383421685
+--- !u!114 &6911498054141921101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move_speed: 10
-  player: {fileID: 0}
+  player: {fileID: 3469614883807157443, guid: 81b0caa50cb2f1a449c823fae332a9a9, type: 3}
