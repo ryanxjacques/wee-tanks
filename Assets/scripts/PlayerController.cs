@@ -30,6 +30,8 @@ public class PlayerController : TankParent, IJumpable
     public event Action onPlanning;
     public event Action onJumping;
     public event Action onGround;
+
+    [Header("Enemies Remaining")] [SerializeField]
     public int targets_remaining;    //< Represents the total number of enemies in scene.
 
     // Attach Observers
@@ -107,7 +109,7 @@ public class PlayerController : TankParent, IJumpable
     }
     public void Death()
     {
-        Destroy(gameObject); ;
+        Destroy(gameObject);
     }
 }
 

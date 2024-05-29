@@ -795,7 +795,7 @@ PrefabInstance:
       objectReference: {fileID: 7993982598810627253, guid: c4213f1a97eb31341932807a8b4e6ebe, type: 3}
     - target: {fileID: 6057793582949783210, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6239020576127183908, guid: a1dd932c0cd554f4e8a9c3999258dbe2, type: 3}
       propertyPath: m_Layer
@@ -1119,7 +1119,7 @@ Transform:
   m_GameObject: {fileID: 1342946213}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.8, y: 2.5, z: -2.4}
+  m_LocalPosition: {x: -6.8, y: 1.3, z: -2.4}
   m_LocalScale: {x: 5, y: 5, z: 40}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1278,9 +1278,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooter
       objectReference: {fileID: 0}
-    - target: {fileID: 8367076555128025259, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
-      propertyPath: m_AgentTypeID
-      value: -1372625422
+    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
+      propertyPath: sightRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
+      propertyPath: walkPointRange
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066913212735353182, guid: 96df77261e8de45a29a921ed8b96d1cc, type: 3}
+      propertyPath: whatIsPlayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

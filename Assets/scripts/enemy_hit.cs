@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class enemy_hit : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
+    private PlayerController _playerController;
     // Start is called before the first frame update
     void Start()
     {
-        player.GetComponent<PlayerController>().TargetFound();
+        player = GameObject.Find("Player");
+        _playerController = player.GetComponent<PlayerController>();
+        _playerController.TargetFound();
     }
 
     // Update is called once per frame
-
     public void Death()
     {
-        player.GetComponent<PlayerController>().TargetDown();
+        _playerController.TargetDown();
         Destroy(gameObject);   
     }
 }
