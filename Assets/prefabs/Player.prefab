@@ -61,6 +61,7 @@ MonoBehaviour:
   TimeBetweenPoints: 0.01
   minDist: 0
   maxDist: 20
+  planningSpeed: 2.5
   minRadius: 0
   maxRadius: 3
 --- !u!114 &7238548880284790025

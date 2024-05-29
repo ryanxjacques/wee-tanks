@@ -43,7 +43,8 @@ public class JumpFeature : MonoBehaviour
     [Header("Jump Controls")]
     [SerializeField] private float minDist;
     [SerializeField] private float maxDist;
-    
+    [SerializeField] private float planningSpeed;
+
     [Header("Impact Zone Controls")]
     [SerializeField] private float minRadius;
     [SerializeField] private float maxRadius;
@@ -93,7 +94,7 @@ public class JumpFeature : MonoBehaviour
     private void CalculateGrowthRate(float speed)
     {
         int FRAMERATE = 50;  // Assuming a 50 Fps.
-        jumpGrowthRate = speed / ((this.maxDist - this.minDist) * FRAMERATE);
+        jumpGrowthRate = planningSpeed * (speed / ((this.maxDist - this.minDist) * FRAMERATE));
     }
 
     // A collision mask is a 32-bit string where each bit represents a layer.
