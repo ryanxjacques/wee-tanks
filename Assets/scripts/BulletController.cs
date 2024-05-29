@@ -23,12 +23,6 @@ public class BulletController : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             _playerController.Death();
-            
-            // Spagetti code that makes it so the bullet is only destroyed by
-            // the player when the player is on the ground.
-            if (_playerController.CheckState(State.OnGround))
-                Destroy(gameObject);
-            return;
         }
         Destroy(gameObject); // Destroy the bullet
     }
