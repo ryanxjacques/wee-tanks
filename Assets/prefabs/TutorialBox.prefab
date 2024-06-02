@@ -67,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ea3f87f7ba3bb448b3a72a282d25d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3469614883807157443, guid: 81b0caa50cb2f1a449c823fae332a9a9, type: 3}
 --- !u!1001 &1927699184200877617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,10 +115,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1461304994638716399, guid: 25764fb5c21208a41a37891dca11b767, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1461304994638716399, guid: 25764fb5c21208a41a37891dca11b767, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -6478536213147159724, guid: 25764fb5c21208a41a37891dca11b767, type: 3}
     - target: {fileID: 919132149155446097, guid: 25764fb5c21208a41a37891dca11b767, type: 3}
       propertyPath: m_Name
       value: tutorial_box
       objectReference: {fileID: 0}
+    - target: {fileID: 5948572869532665529, guid: 25764fb5c21208a41a37891dca11b767, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f74994ad157b9442b452428d1f10f73, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 25764fb5c21208a41a37891dca11b767, type: 3}
