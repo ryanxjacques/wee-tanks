@@ -24,13 +24,13 @@ public class PlayerController : TankParent, IJumpable
     public AudioClip jump;
     public AudioClip move;
     public AudioClip ost;
-    public AudioClip death;
     private Squished _squished;
     private Vector3 velocity;
     private Direction direction = new Direction();  //< Def. of Direction is in Entity.cs
     public event Action onPlanning;
     public event Action onJumping;
     public event Action onGround;
+    public event Action onDeath;
 
     [Header("Enemies Remaining")] [SerializeField]
     public int targets_remaining;    //< Represents the total number of enemies in scene.
@@ -113,8 +113,7 @@ public class PlayerController : TankParent, IJumpable
         // Player is invulnerable in the air
         if (CheckState(State.OnGround))
         {
-            _audioSource.PlayOneShot(death,0.7f);
-            Destroy(gameObject);
+            onDeath?.Invoke();
         }
     }
 }
