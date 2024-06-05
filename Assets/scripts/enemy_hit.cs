@@ -1,23 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class enemy_hit : MonoBehaviour
 {
-    private GameObject player;
-    private PlayerController _playerController;
+    public Action onDeath;
+    public Action onSpawn;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        _playerController = player.GetComponent<PlayerController>();
-        _playerController.TargetFound();
+        onSpawn?.Invoke();
     }
 
     // Update is called once per frame
     public void Death()
     {
-        _playerController.TargetDown();
+        onDeath?.Invoke();
         Destroy(gameObject);   
     }
 }

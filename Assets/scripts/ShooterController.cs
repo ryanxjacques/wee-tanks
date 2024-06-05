@@ -44,11 +44,6 @@ public class ShooterController : MonoBehaviour
         _playerController = player.GetComponent<PlayerController>();
     }
 
-    public void Death()
-    {
-        Destroy(gameObject);
-    }
-
     // Modified version of "Dave / GameDevelopment"'s implementation.
     private void Update()
     {   

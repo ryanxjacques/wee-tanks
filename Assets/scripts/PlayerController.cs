@@ -32,9 +32,6 @@ public class PlayerController : TankParent, IJumpable
     public event Action onGround;
     public event Action onDeath;
 
-    [Header("Enemies Remaining")] [SerializeField]
-    public int targets_remaining;    //< Represents the total number of enemies in scene.
-
     // Attach Observers
     private void Start()
     {
@@ -44,7 +41,6 @@ public class PlayerController : TankParent, IJumpable
         _jumpFeature.InitializeJumpFeature(this);
         _audioSource = GetComponent<AudioSource>();
         _audioSource.PlayOneShot(ost,0.7f);
-        targets_remaining = 0;
     }
 
     private void OnButtonObserver(Button button)
@@ -69,18 +65,6 @@ public class PlayerController : TankParent, IJumpable
             _audioSource.PlayOneShot(jump,0.7f);
             onJumping?.Invoke();
         }
-    }
-
-    // Increment the global enemy counter.
-    public void TargetFound()
-    {
-        targets_remaining +=1;
-    }
-    
-    // Decrement the enemy counter.
-    public void TargetDown()
-    {
-        targets_remaining -=1;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -114,6 +98,7 @@ public class PlayerController : TankParent, IJumpable
         if (CheckState(State.OnGround))
         {
             onDeath?.Invoke();
+            Destroy(gameObject);
         }
     }
 }
