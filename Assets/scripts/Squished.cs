@@ -16,17 +16,28 @@ using UnityEngine;
 //
 public class Squished : MonoBehaviour
 {
-    private PlayerController player;
+    [SerializeField] private PlayerController player;
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponentInParent<PlayerController>();
+        Debug.Log("Created Hitbox");
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     void OnTriggerEnter(Collider other)
     {
         // Activate collision only when player is not on ground.
         if (other.gameObject.tag == "enemy" && !player.CheckState(State.OnGround))
+        {
+            other.gameObject.GetComponent<enemy_hit>().Death();
+        }
+    }
+
+    // Use OnTriggerStay to make the JumpReticle Hitbox work correctly.
+    void OnTriggerStay(Collider other)
+    {
+        // Activate collision only when player is not on ground.
+        if (other.gameObject.tag == "enemy" && player.CheckState(State.OnGround))
         {
             other.gameObject.GetComponent<enemy_hit>().Death();
         }

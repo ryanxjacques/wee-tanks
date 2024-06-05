@@ -55,11 +55,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ChangeSceneAfterDelay(3, "level select"));
     }
 
-    private void DisableWinText()
-    {
-
-    }
-
     private IEnumerator ChangeSceneAfterDelay(float timeWait, string newScene)
     {
         yield return new WaitForSeconds(timeWait);

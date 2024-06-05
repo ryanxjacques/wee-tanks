@@ -53,6 +53,8 @@ public class JumpFeature : MonoBehaviour
     private Rigidbody _rigidbody;
     private LineRenderer lineRenderer;
     private GameObject JumpReticle;
+    private Renderer JumpReticleRender;
+    private SphereCollider Hitbox;
     private LayerMask JumpFeatureCollisionMask;
     private int jumpFeatureLayer;
     private float jumpGrowthRate;
@@ -72,7 +74,9 @@ public class JumpFeature : MonoBehaviour
         JumpReticle = Instantiate(JumpReticleAsset, 
                                   new Vector3(0, 0, 0), 
                                   Quaternion.identity);
-        JumpReticle.SetActive(false);
+        Hitbox = JumpReticle.GetComponentInChildren<SphereCollider>();
+        JumpReticleRender = JumpReticle.GetComponentInChildren<Renderer>();
+        JumpReticleRender.enabled = false;
         jumpFeatureLayer = gameObject.layer;
         CreateCollisionMask();
     }
@@ -118,6 +122,7 @@ public class JumpFeature : MonoBehaviour
     // so that the framerate is constant 50 Fps.
     private void OnPlanningObserver()
     {
+        Hitbox.enabled = false;
         // Leave early if subject is not on the ground.
         if (!((subject as IStateful).CheckState(State.OnGround)))
             return;
@@ -131,7 +136,7 @@ public class JumpFeature : MonoBehaviour
         // Render the trajectory and JumpReticle.
         lineRenderer.positionCount = maxPoints;  // Reset # of points in line.
         lineRenderer.enabled = true;
-        JumpReticle.SetActive(true);
+        JumpReticleRender.enabled = true;
         DrawProjection(jumpDistance);
         incrementDuration();
     }
@@ -146,9 +151,10 @@ public class JumpFeature : MonoBehaviour
     // Stop rendering the trajectory and JumpReticle and reset durationTime.
     private void OnGroundObserver()
     {
+        Hitbox.enabled = true;
         durationTime = 0;
         lineRenderer.enabled = false;
-        JumpReticle.SetActive(false); 
+        JumpReticleRender.enabled = false;
         
         // Reset all velocities and rotation when the subject contacts the ground.
         _rigidbody.angularVelocity = Vector3.zero;

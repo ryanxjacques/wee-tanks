@@ -98,7 +98,6 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: eb838ed2bae73ba43a9a4c6eb1ede060, type: 3}
   move: {fileID: 8300000, guid: d9eea7b17e607a34ea0c5ac9a3e5bcdb, type: 3}
   ost: {fileID: 8300000, guid: bd6bf732f594e344ca0486f86dc48015, type: 3}
-  targets_remaining: 0
 --- !u!114 &7856248955141729536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,6 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2828c599d7d5c3c4db08ec3e00462b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6353263769113207536}
 --- !u!1001 &1317815074832604946
 PrefabInstance:
   m_ObjectHideFlags: 0
