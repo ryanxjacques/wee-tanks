@@ -77,7 +77,7 @@ public class JumpFeature : MonoBehaviour
         Hitbox = JumpReticle.GetComponentInChildren<SphereCollider>();
         JumpReticleRender = JumpReticle.GetComponentInChildren<Renderer>();
         JumpReticleRender.enabled = false;
-        jumpFeatureLayer = gameObject.layer;
+        jumpFeatureLayer = JumpReticle.layer;
         CreateCollisionMask();
     }
 

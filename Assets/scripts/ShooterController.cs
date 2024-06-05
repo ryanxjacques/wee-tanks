@@ -20,7 +20,7 @@ public class ShooterController : MonoBehaviour
     public LayerMask whatIsGround;
 
     public GameObject bulletPrefab;
-    public float fireRate = 0.5f;
+    public float fireRate;
     private float nextFire = 0.0f;
 
     public float sightRange;
