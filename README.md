@@ -1,6 +1,4 @@
 # wee-tanks
 CS 410: Game Programming | Final Group Project | Wee Tanks
 
-## Play the game
-
-https://ryanxjacques.github.io/wee-tanks/WebGL/
+## Play Now: https://ryanxjacques.github.io/wee-tanks/WebGL/
