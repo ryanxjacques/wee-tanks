@@ -101,7 +101,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   bulletPrefab: {fileID: 7603570374716843767, guid: 923e4cd8b68e041ee9b0194df75e23ed, type: 3}
-  fireRate: 0.25
+  fireRate: 2
   sightRange: 80
   attackRange: 60
   walkPointRange: 40
